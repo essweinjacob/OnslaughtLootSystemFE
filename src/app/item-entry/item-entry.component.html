@@ -1,18 +1,15 @@
+<input type="text" [(ngModel)]="itemName" (input)="Search()"/>
 <div class ="container">
     <div class = "card">
         <h3 class="text-center"> Item Entry List</h3>
         <div class = "card-body">
-            <table mat-sort class="table table-striped">
+            <table class="table table-striped">
                 <thead>
-                    <th> Character Name</th>
-                    <th mat-sort-header="itemName"> Item Name</th>
-                    <th mat-sort-header="prioValue"> Priority Value </th>
+                    <th>test</th>
                 </thead>    
                     <tbody>
                         <tr *ngFor = "let itemEntry of itemEntries">
-                        <td> {{ itemEntry.charName}}</td>
-                        <td> {{ itemEntry.itemName}}</td>
-                        <td> {{ itemEntry.prioValue}}</td>
+                        <td> {{ itemEntry.charName }} {{ itemEntry.prioValue }}</td>
                     </tr>
                 </tbody>
             </table>
