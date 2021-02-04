@@ -5,7 +5,7 @@
         <div class = "card-body">
             <table class="table table-striped">
                 <thead>
-                    <th>test</th>
+                    <th *ngFor = "let uniqueItem of itemNameList">{{uniqueItem}}</th>
                 </thead>    
                     <tbody>
                         <tr *ngFor = "let itemEntry of itemEntries">
