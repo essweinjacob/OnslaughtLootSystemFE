@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "sweat-frontend"
+  "defaultProject": "sweat-frontend",
+  "cli": {
+    "analytics": false
+  }
 }

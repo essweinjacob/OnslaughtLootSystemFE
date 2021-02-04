@@ -1,0 +1,21 @@
+<div class ="container">
+    <div class = "card">
+        <h3 class="text-center"> Item Entry List</h3>
+        <div class = "card-body">
+            <table mat-sort class="table table-striped">
+                <thead>
+                    <th> Character Name</th>
+                    <th mat-sort-header="itemName"> Item Name</th>
+                    <th mat-sort-header="prioValue"> Priority Value </th>
+                </thead>    
+                    <tbody>
+                        <tr *ngFor = "let itemEntry of itemEntries">
+                        <td> {{ itemEntry.charName}}</td>
+                        <td> {{ itemEntry.itemName}}</td>
+                        <td> {{ itemEntry.prioValue}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>  
