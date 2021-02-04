@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ItemEntryComponent } from './item-entry/item-entry.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemEntryComponent
+    ItemEntryComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,16 @@
-<input type="text" [(ngModel)]="itemName" (input)="Search()"/>
+<input type="text" [(ngModel)]="itemName"/>
 <div class ="container">
     <div class = "card">
         <h3 class="text-center"> Item Entry List</h3>
         <div class = "card-body">
             <table class="table table-striped">
                 <thead>
-                    <th *ngFor= "let itemName of itemNamesList">{{ itemName }} </th>
                 </thead>    
                     <tbody>
-                        <tr *ngFor = "let itemEntry of itemEntries">
-                        <td> {{ itemEntry.charName }} {{ itemEntry.prioValue }}</td>
+                        <tr *ngFor = "let itemEntry of itemEntries | searchPipe: itemName">
+                        <td> {{ itemEntry.charName }} </td>
+                        <td> {{ itemEntry.prioValue }} </td>
+                        <td> {{ itemEntry.itemName}} </td>
                     </tr>
                 </tbody>
             </table>
