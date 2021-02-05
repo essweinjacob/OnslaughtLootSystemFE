@@ -3,4 +3,5 @@ export class ItemEntry {
     charName: string;
     itemName: string;
     prioValue: string;
+    hasItem: boolean;
 }

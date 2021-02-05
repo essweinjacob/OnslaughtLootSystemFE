@@ -11,6 +11,7 @@ export class ItemEntryComponent implements OnInit {
   
   itemEntries: ItemEntry[];
   itemName: string;
+  charName: string;
 
   constructor(private itemEntryService: ItemEntryService) { }
 

@@ -5,18 +5,24 @@ import { AppComponent } from './app.component';
 import { ItemEntryComponent } from './item-entry/item-entry.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SearchPipe } from './search.pipe';
+import { SearchByItemNamePipe } from './search.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
+import { SearchByCharNamePipe } from './search-by-char-name.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemEntryComponent,
-    SearchPipe
+    SearchByItemNamePipe,
+    SearchByCharNamePipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
