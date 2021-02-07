@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ItemEntryComponent } from './item-entry/item-entry.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 const routes: Routes = [
   { path: 'adminLootSheet',
-    component: ItemEntryComponent }
+    component: ItemEntryComponent },
+    { path: 'adminAttendance',
+    component: AttendanceComponent }
 ];
 
 @NgModule({

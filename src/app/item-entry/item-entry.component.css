@@ -1,0 +1,12 @@
+.doesNotHaveItem {
+    width: 160px;
+    position: relative;
+    color: white;
+    background: blue;
+}
+.hasItem {
+    width: 160px;
+    position: relative;
+    color: white;
+    background-color: red;
+}

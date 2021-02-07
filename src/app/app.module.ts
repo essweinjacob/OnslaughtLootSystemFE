@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchByItemNamePipe } from './search.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
+import { AttendanceComponent } from './attendance/attendance.component';
 import { SearchByCharNamePipe } from './search-by-char-name.pipe';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SearchByCharNamePipe } from './search-by-char-name.pipe';
     AppComponent,
     ItemEntryComponent,
     SearchByItemNamePipe,
+    AttendanceComponent,
     SearchByCharNamePipe
   ],
   imports: [

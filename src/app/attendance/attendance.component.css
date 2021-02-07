@@ -1,0 +1,12 @@
+.checkBox{
+    height: 15px;
+    width: 15px;
+}
+
+.checkBoxTrue {
+    background-color: blue;
+}
+
+.checkBoxFalse{
+    background-color: red;
+}

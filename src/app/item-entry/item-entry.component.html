@@ -1,4 +1,5 @@
-Search By Item: <input type="text" [(ngModel)]="itemName"/> Search by Character: <input type="text" [(ngModel)]="charName"/>
+Search By Item: <input type="text" [(ngModel)]="itemName"/> Search By Name: <input type="text" [(ngModel)]="charName"/>
+<button (click)="updateLootSheet()">Update Loot Sheet</button>
 <div class ="container">
     <div class = "card">
         <h3 class="text-center"> Item Entry List</h3>
@@ -10,12 +11,18 @@ Search By Item: <input type="text" [(ngModel)]="itemName"/> Search by Character:
                     <th>Item Name</th>
                 </thead>    
                     <tbody>
-                        <tr *ngFor = "let itemEntry of itemEntries | searchByItemNamePipe: itemName | searchByItemNamePipe: itemName">
+                        <tr *ngFor = "let itemEntry of itemEntries | searchByItemNamePipe: itemName | searchByCharName: charName">
                         <td> {{ itemEntry.charName }} </td>
                         <td> {{ itemEntry.prioValue }} </td>
                         <td> {{ itemEntry.itemName}} </td>
-                        <td> {{ itemEntry.hasItem}} </td>
-                        <span></span>
+                        <td>
+                            <span *ngIf="!itemEntry.hasItem;else doesNotHaveItemButton">
+                                <button [id]="itemEntry.charName + itemEntry.itemName + itemEntry.prioValue" class="doesNotHaveItem" (click)="toggleItemHave(itemEntry)">Does Not Have Item</button>
+                            </span>
+                            <ng-template #doesNotHaveItemButton>
+                                <button [id]="itemEntry.charName + itemEntry.itemName + itemEntry.prioValue" class="hasItem" (click)="toggleItemHave(itemEntry)">Has Item</button>
+                            </ng-template>
+                        </td>
                     </tr>
                 </tbody>
             </table>

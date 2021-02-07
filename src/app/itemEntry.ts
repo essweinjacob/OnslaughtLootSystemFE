@@ -1,7 +1,13 @@
 export class ItemEntry {
-    id: number;
     charName: string;
     itemName: string;
-    prioValue: string;
+    prioValue: number;
+    hasItem: boolean;
+}
+
+export class LootSheetUpdate {
+    charId: number;
+    itemName: string;
+    prioValue: number;
     hasItem: boolean;
 }

@@ -1,0 +1,28 @@
+<button (click)="updateAttendance()">Update Attendance</button>
+<div class ="container">
+    <div class = "card">
+        <h3 class="text-center"> Attendance
+        </h3>
+        <div class = "card-body">
+            <table class="table table-striped">
+                <thead>
+                    <th>Character Name</th>
+                    <th *ngFor="let raidDays of uniqueRaidDates"> {{ raidDays }}</th>
+                </thead> 
+                <tbody>
+                    <tr *ngFor="let charName of uniqueCharNames">
+                        <td> {{ charName }} </td>
+                        <td *ngFor="let raidDay of uniqueRaidDates">
+                            <span *ngIf="didPlayerAttend(raidDay, charName); else notChecked">
+                                <button [id]="charName + raidDay" (click)="toggleTrueFalse(raidDay, charName)">&#10003;</button>
+                            </span>
+                            <ng-template #notChecked>
+                                <button [id]="charName + raidDay" (click)="toggleTrueFalse(raidDay, charName)">X</button>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>  
