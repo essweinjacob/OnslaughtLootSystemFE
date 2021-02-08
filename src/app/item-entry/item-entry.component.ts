@@ -30,6 +30,7 @@ export class ItemEntryComponent implements OnInit {
       //console.log(data);
       this.itemEntries = data;
       this.itemEntriesLeng = this.itemEntries.length;
+      console.log(this.itemEntriesLeng);
     });
 
     this.rosterAllEntriesService.getRosterEntries().subscribe((data: Roster[]) => {
@@ -44,36 +45,33 @@ export class ItemEntryComponent implements OnInit {
       if(this.itemEntries[i].charName == itemEntry.charName && this.itemEntries[i].itemName == itemEntry.itemName){
         if(itemEntry.hasItem){
           this.itemEntries[i].hasItem = false;
-          
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.add("doesNotHaveItem");
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.remove("haveItem");
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).innerText = "Does Not Have Item";
-          
+
+          this.lootSheetUpdate.push({charId: this.findIdByName(this.itemEntries[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntries[i].prioValue, hasItem: this.itemEntries[i].hasItem});
+          this.itemEntryService.updateAttendance(this.lootSheetUpdate).subscribe( () =>{
+          })
         }else{
           
           this.itemEntries[i].hasItem = true;
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.add("hasItem");
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.remove("doesNotHaveItem");
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).innerText = "Has Item";
-          
+
+          this.lootSheetUpdate.push({charId: this.findIdByName(this.itemEntries[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntries[i].prioValue, hasItem: this.itemEntries[i].hasItem});
+          this.itemEntryService.updateAttendance(this.lootSheetUpdate).subscribe( () =>{
+          })
         }
       }
     }
   }
-
-  updateLootSheet(): void{
-    this.lootSheetUpdate = [];
-    for(var i = 0; i < this.itemEntriesLeng; i++){
-      for(var j = 0; i < this.rosterLength; j++){
-        if(this.itemEntries[i].charName == this.roster[j].charName){
-          this.lootSheetUpdate.push({charId: this.roster[j].charId, itemName: this.itemEntries[i].itemName, prioValue: this.itemEntries[i].prioValue, hasItem: this.itemEntries[i].hasItem });
-          break;
-        }
+    
+  findIdByName(givenName: string): number {
+    for(var i = 0; i < this.rosterLength; i++){
+      if(givenName == this.roster[i].charName){
+        return this.roster[i].charId;
       }
     }
-    
-    this.itemEntryService.updateAttendance(this.lootSheetUpdate).subscribe( () =>{
-    })
-    window.alert("The lootsheet has been successfuly updated");
   }
 }

@@ -19,5 +19,4 @@ export class AttendanceService {
   updateAttendance(updateAttendance: Attendance[]): Observable<Attendance[]>{
     return this.http.put<Attendance[]>(`${this.postUrl}`, updateAttendance);
   }
-
 }

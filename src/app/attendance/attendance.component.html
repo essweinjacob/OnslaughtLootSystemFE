@@ -1,23 +1,25 @@
-<button (click)="updateAttendance()">Update Attendance</button>
-<div class ="container">
-    <div class = "card">
+Search By Name: <input type="text" [(ngModel)]="charName"/>
+<br>
+<input type="text" [(ngModel)]="raidDateToAdd"><button (click)="addDate()">Add Date</button>
+<div>
+    <div>
         <h3 class="text-center"> Attendance
         </h3>
-        <div class = "card-body">
-            <table class="table table-striped">
+        <div>
+            <table mdbTable class="table table-striped table-fixed">
                 <thead>
                     <th>Character Name</th>
-                    <th *ngFor="let raidDays of uniqueRaidDates"> {{ raidDays }}</th>
+                    <th *ngFor="let raidDays of uniqueRaidDates" class="dateColumn">{{ raidDays }}</th>
                 </thead> 
                 <tbody>
-                    <tr *ngFor="let charName of uniqueCharNames">
-                        <td> {{ charName }} </td>
-                        <td *ngFor="let raidDay of uniqueRaidDates">
-                            <span *ngIf="didPlayerAttend(raidDay, charName); else notChecked">
-                                <button [id]="charName + raidDay" (click)="toggleTrueFalse(raidDay, charName)">&#10003;</button>
+                    <tr *ngFor="let char of charsAndClasses | searchByCharName: charName">
+                        <td class = "charColumn"> {{ char.charName }} </td>
+                        <td class = "dateColumn" *ngFor="let raidDay of uniqueRaidDates">
+                            <span *ngIf="didPlayerAttend(raidDay, char.charName); else notChecked">
+                                <button class="checkBox" [id]="char.charName + raidDay" (click)="toggleTrueFalse(raidDay, char.charName)">&#10003;</button>
                             </span>
                             <ng-template #notChecked>
-                                <button [id]="charName + raidDay" (click)="toggleTrueFalse(raidDay, charName)">X</button>
+                                <button class="checkBox" [id]="char.charName +  raidDay" (click)="toggleTrueFalse(raidDay, char.charName)">X</button>
                             </ng-template>
                         </td>
                     </tr>

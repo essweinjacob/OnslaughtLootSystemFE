@@ -5,3 +5,8 @@ export class Attendance {
     raidDate: string;
     didAttend: boolean;
 }
+
+export class CharNameAndRoster {
+    charName: string;   
+    charClass: string;
+}
