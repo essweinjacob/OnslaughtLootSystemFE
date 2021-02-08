@@ -1,4 +1,4 @@
-Search By Name: <input type="text" [(ngModel)]="charName"/>
+Search By Name: <input type="text" [(ngModel)]="charNameSearch"/>
 <br>
 <input type="text" [(ngModel)]="raidDateToAdd"><button (click)="addDate()">Add Date</button>
 <div>
@@ -12,7 +12,7 @@ Search By Name: <input type="text" [(ngModel)]="charName"/>
                     <th *ngFor="let raidDays of uniqueRaidDates" class="dateColumn">{{ raidDays }}</th>
                 </thead> 
                 <tbody>
-                    <tr *ngFor="let char of charsAndClasses | searchByCharName: charName">
+                    <tr *ngFor="let char of charsAndClasses | searchByCharName: charNameSearch">
                         <td class = "charColumn"> {{ char.charName }} </td>
                         <td class = "dateColumn" *ngFor="let raidDay of uniqueRaidDates">
                             <span *ngIf="didPlayerAttend(raidDay, char.charName); else notChecked">

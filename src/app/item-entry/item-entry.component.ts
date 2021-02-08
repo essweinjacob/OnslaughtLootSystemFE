@@ -40,7 +40,7 @@ export class ItemEntryComponent implements OnInit {
     })
   }
 
-  toggleItemHave(itemEntry: object): void{
+  toggleItemHave(itemEntry: ItemEntry): void{
     for(var i = 0; i < this.itemEntriesLeng; i++){
       if(this.itemEntries[i].charName == itemEntry.charName && this.itemEntries[i].itemName == itemEntry.itemName){
         if(itemEntry.hasItem){

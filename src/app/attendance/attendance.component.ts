@@ -25,6 +25,8 @@ export class AttendanceComponent implements OnInit {
 
   raidDateToAdd: string;
 
+  charNameSearch: string;
+
   constructor(private attendanceService: AttendanceService,
               private uniqueAttendanceService: GetUniqueRaidDatesService,
               private uniqueCharNamesService: GetUniqueCharNamesService) { }
@@ -50,6 +52,7 @@ export class AttendanceComponent implements OnInit {
         for(var j = 0; j < this.attendanceLength; j++){
           //console.log(this.uniqueCharNames[i], ": ", i, this.attendances[j].charName, ": ", );
           if(this.uniqueCharNames[i] == this.attendances[j].charName){
+            console.log(typeof(this.uniqueCharNames[i]));
             this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
             break;
           }
@@ -91,5 +94,9 @@ export class AttendanceComponent implements OnInit {
     this.attendanceService.updateAttendance(this.attendances).subscribe( () =>{
     })
     window.alert("The attendance has been successfuly updated");
+  }
+
+  addDate(): void {
+    console.log("addDate");
   }
 }

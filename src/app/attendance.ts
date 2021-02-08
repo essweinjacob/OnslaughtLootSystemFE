@@ -7,6 +7,6 @@ export class Attendance {
 }
 
 export class CharNameAndRoster {
-    charName: string;   
+    charName: String;   
     charClass: string;
 }
