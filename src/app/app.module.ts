@@ -10,6 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { SearchByCharNamePipe } from './search-by-char-name.pipe';
+import { MatMenuModule } from '@angular/material/menu';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddDateDialogComponent } from './add-date-dialog/add-date-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -17,14 +21,18 @@ import { SearchByCharNamePipe } from './search-by-char-name.pipe';
     ItemEntryComponent,
     SearchByItemNamePipe,
     AttendanceComponent,
-    SearchByCharNamePipe
+    SearchByCharNamePipe,
+    AddDateDialogComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([]),
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Attendance, CharNameAndRoster } from '../attendance';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Attendance, CharNameAndRoster, AddAttendance, AttUpdate } from '../attendance';
 import { AttendanceService } from '../attendance.service';
 import { GetUniqueRaidDatesService } from '../get-unique-raid-dates.service';
 import { GetUniqueCharNamesService } from '../get-unique-char-name-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddDateDialogComponent } from '../add-date-dialog/add-date-dialog.component';
+
 
 @Component({
   selector: 'app-attendance',
@@ -15,6 +18,7 @@ export class AttendanceComponent implements OnInit {
   attendanceLength: number;
 
   uniqueRaidDates: String[];
+  uniqueRaidDatesAmount: number;
   uniqueRaidDate: string;
 
   uniqueCharNames: String[];
@@ -27,32 +31,37 @@ export class AttendanceComponent implements OnInit {
 
   charNameSearch: string;
 
+  addRaidDate: string;
+
   constructor(private attendanceService: AttendanceService,
               private uniqueAttendanceService: GetUniqueRaidDatesService,
-              private uniqueCharNamesService: GetUniqueCharNamesService) { }
+              private uniqueCharNamesService: GetUniqueCharNamesService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
-      //console.log(data[0].raidDate);
       this.attendances = data;
-      //console.log(this.attendances);
       this.attendanceLength = this.attendances.length;
+      //console.log(this.attendanceLength);
     });
 
     this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
       this.uniqueRaidDates = data;
       //console.log(this.uniqueRaidDates);
+      this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
     })
 
     this.uniqueCharNamesService.getUniqueCharNames().subscribe((data: String[]) => {
       this.uniqueCharNames = data;
       //console.log(this.uniqueCharNames);
       
+      if(this.attendanceLength == undefined){
+        this.ngOnInit();
+      }
       for(var i = 0; i < this.uniqueCharNames.length; i++){
         for(var j = 0; j < this.attendanceLength; j++){
           //console.log(this.uniqueCharNames[i], ": ", i, this.attendances[j].charName, ": ", );
           if(this.uniqueCharNames[i] == this.attendances[j].charName){
-            console.log(typeof(this.uniqueCharNames[i]));
             this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
             break;
           }
@@ -77,26 +86,61 @@ export class AttendanceComponent implements OnInit {
   }
 
   toggleTrueFalse(raidDay: string, charName: string): void {
+    let attUpdate: AttUpdate = {charId: 0, raidDate: "0/0", didAttend: true};
     for(var i = 0; i < this.attendances.length; i++){
       if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName && this.attendances[i].didAttend == true){
         this.attendances[i].didAttend = false;
-        document.getElementById(charName+raidDay).innerHTML = "X";
+        document.getElementById(charName+raidDay).innerHTML = "";
+        attUpdate.charId = this.attendances[i].charId;
+        attUpdate.raidDate = raidDay;
+        attUpdate.didAttend = false;
       } else if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName){
         this.attendances[i].didAttend = true;
         document.getElementById(charName+raidDay).innerHTML = "&#10003;";
+        attUpdate.charId = this.attendances[i].charId;
+        attUpdate.raidDate = raidDay;
+        attUpdate.didAttend = true;
       }
     }
-    this.attendanceService.updateAttendance(this.attendances).subscribe( () =>{
+    //console.log(attUpdate);
+    this.attendanceService.updateAttendance(attUpdate).subscribe( () =>{
     })
   }
 
-  updateAttendance(): void {
-    this.attendanceService.updateAttendance(this.attendances).subscribe( () =>{
+  addDateDialog(): void {
+    let dialogRef = this.dialog.open(AddDateDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      for(var i = 0; i < this.uniqueRaidDates.length; i++){
+        if(result == this.uniqueRaidDates[i]){
+          window.alert("This raid date already exists");
+          return;
+        }
+      }
+      // Create a attendance object list with character id
+      let addNewAttendance: AddAttendance[] = [];
+      for(var i = 0; i <= this.uniqueCharNames.length; i++){
+        addNewAttendance.push({ charId: i, raidDate: result })
+      }
+      this.attendanceService.addAttendanceDate(addNewAttendance).subscribe( () =>{
+      })
+      location.reload();
     })
-    window.alert("The attendance has been successfuly updated");
   }
 
-  addDate(): void {
-    console.log("addDate");
+  removeDateDialog(): void {
+    let dialogRef = this.dialog.open(AddDateDialogComponent);
+    
+    dialogRef.afterClosed().subscribe(result => {
+      for(var i = 0; i <= this.uniqueRaidDates.length; i++){
+        if(result == this.uniqueRaidDates[i]){
+          this.attendanceService.removeAttendanceDate(result).subscribe( () =>{
+          })
+          location.reload();
+          return;
+        }
+      }
+      window.alert("This raid date does not exist");
+    })
   }
 }

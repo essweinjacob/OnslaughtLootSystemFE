@@ -4,9 +4,26 @@
     color: white;
     background: blue;
 }
+
 .hasItem {
     width: 160px;
     position: relative;
     color: white;
     background-color: red;
+}
+
+h3 {
+    margin-bottom: 0px!important;
+    border-top-width: 8px!important;
+    padding-top: 20px!important;
+}
+
+.plusOneButton {
+    height: 30px;
+    width: 30px;
+    color: green;
+}
+
+.hasPlusOneButton {
+    color: blue;
 }

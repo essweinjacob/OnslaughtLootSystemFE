@@ -1,6 +1,10 @@
 Search By Name: <input type="text" [(ngModel)]="charNameSearch"/>
 <br>
-<input type="text" [(ngModel)]="raidDateToAdd"><button (click)="addDate()">Add Date</button>
+<button mat-button [matMenuTriggerFor]="dropdown">Actions</button>
+<mat-menu #dropdown="matMenu">
+    <button mat-menu-item (click)="addDateDialog()">Add a Date</button>
+    <button mat-menu-item (click)="removeDateDialog()">Remove a Date</button>
+</mat-menu>
 <div>
     <div>
         <h3 class="text-center"> Attendance
@@ -19,7 +23,7 @@ Search By Name: <input type="text" [(ngModel)]="charNameSearch"/>
                                 <button class="checkBox" [id]="char.charName + raidDay" (click)="toggleTrueFalse(raidDay, char.charName)">&#10003;</button>
                             </span>
                             <ng-template #notChecked>
-                                <button class="checkBox" [id]="char.charName +  raidDay" (click)="toggleTrueFalse(raidDay, char.charName)">X</button>
+                                <button class="checkBox" [id]="char.charName +  raidDay" (click)="toggleTrueFalse(raidDay, char.charName)"></button>
                             </ng-template>
                         </td>
                     </tr>

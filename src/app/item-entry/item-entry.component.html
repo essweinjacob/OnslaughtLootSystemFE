@@ -1,20 +1,20 @@
-Search By Item: <input type="text" [(ngModel)]="itemName"/> Search By Name: <input type="text" [(ngModel)]="charName"/>
 <div class ="container">
     <div class = "card">
-        <h3 class="text-center"> Item Entry List</h3>
+        <h3 class="text-center"> <input type="text" [(ngModel)]="itemName" placeholder="Search By Item" /> Item Entry List <input type="text" [(ngModel)]="charName" placeholder="Search By Name"/></h3>
         <div class = "card-body">
             <table class="table table-striped">
                 <thead>
                     <th>Character Name</th>
                     <th>Priority Value</th>
                     <th>Item Name</th>
+                    <th></th>
                 </thead>    
                     <tbody>
-                        <tr *ngFor = "let itemEntry of itemEntries | searchByItemNamePipe: itemName | searchByCharName: charName">
+                        <tr *ngFor = "let itemEntry of itemEntrySortedOnCalculatedValues | searchByItemNamePipe: itemName | searchByCharName: charName">
                         <td> {{ itemEntry.charName }} </td>
-                        <td> {{ itemEntry.prioValue }} </td>
-                        <td> {{ itemEntry.itemName}} </td>
-                        <td>
+                        <td> {{ itemEntry.prioValueCalc }} </td>
+                        <td> {{ itemEntry.itemName }} </td>
+                        <td>    
                             <span *ngIf="!itemEntry.hasItem;else doesNotHaveItemButton">
                                 <button [id]="itemEntry.charName + itemEntry.itemName + itemEntry.prioValue" class="doesNotHaveItem" (click)="toggleItemHave(itemEntry)">Does Not Have Item</button>
                             </span>

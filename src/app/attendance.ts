@@ -6,7 +6,18 @@ export class Attendance {
     didAttend: boolean;
 }
 
+export class AttUpdate {
+    charId: number;
+    raidDate: string;
+    didAttend: boolean;
+}
+
 export class CharNameAndRoster {
     charName: String;   
     charClass: string;
+}
+
+export class AddAttendance {
+    charId: number;
+    raidDate: string;
 }
