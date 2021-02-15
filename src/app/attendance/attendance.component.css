@@ -13,6 +13,14 @@
     max-width: none;
     overflow-x: scroll;
     overflow-y: visiable;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+td, th {
+    margin: 0;
+    white-space: nowrap;
+    border-top-width: 0px;
 }
 
 .table-fixed {
@@ -23,7 +31,7 @@
     background-color: white !important;
     position: sticky;
     top: 0;
-
+    z-index: 2;
 }
 
 .checkBox{
@@ -38,8 +46,12 @@
 }
 
 .charColumn {
+    position: sticky;
+    background-color: white;
     width: 190px;
     height: 58px;
+    left: 0;
+    z-index: 1;
 }
 
 h3 {

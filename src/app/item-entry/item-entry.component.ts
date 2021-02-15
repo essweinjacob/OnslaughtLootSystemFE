@@ -54,7 +54,8 @@ export class ItemEntryComponent implements OnInit {
                                                         itemName: this.itemEntries[i].itemName,
                                                         prioValue: this.itemEntries[i].prioValue,
                                                         prioValueCalc: this.getPrioValue(this.itemEntries[i]),
-                                                        hasItem: this.itemEntries[i].hasItem});
+                                                        hasItem: this.itemEntries[i].hasItem,
+                                                        hasPlusOne: false});
       }
       
       this.itemEntrySortedOnCalculatedValues.sort((a,b) => b.prioValueCalc - a.prioValueCalc);
@@ -65,7 +66,7 @@ export class ItemEntryComponent implements OnInit {
   toggleItemHave(itemEntry: ItemEntryUpdate): void{
     var itemUpdate: LootSheetUpdate = {charId: 0, itemName: "None", prioValue: 0, hasItem: true};
     for(var i = 0; i < this.itemEntriesLeng; i++){
-      if(this.itemEntrySortedOnCalculatedValues[i].charName == itemEntry.charName && this.itemEntrySortedOnCalculatedValues[i].itemName == itemEntry.itemName){
+      if(this.itemEntrySortedOnCalculatedValues[i].charName == itemEntry.charName && this.itemEntrySortedOnCalculatedValues[i].itemName == itemEntry.itemName && this.itemEntrySortedOnCalculatedValues[i].prioValue == itemEntry.prioValue){
         if(itemEntry.hasItem){
           this.itemEntrySortedOnCalculatedValues[i].hasItem = false;
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.add("doesNotHaveItem");
@@ -117,6 +118,27 @@ export class ItemEntryComponent implements OnInit {
       if(givenName == this.roster[i].charName){
         //console.log("here");
         return this.roster[i].charId;
+      }
+    }
+  }
+
+  togglePlusOne(itemEntry: ItemEntryUpdate): void{
+    var itemUpdate: LootSheetUpdate = {charId: 0, itemName: "None", prioValue: 0, hasItem: true};
+    for(var i = 0; i < this.itemEntriesLeng; i++){
+      if(this.itemEntrySortedOnCalculatedValues[i].charName == itemEntry.charName && this.itemEntrySortedOnCalculatedValues[i].itemName == itemEntry.itemName && this.itemEntrySortedOnCalculatedValues[i].prioValue == itemEntry.prioValue){
+        if(!this.itemEntrySortedOnCalculatedValues[i].hasPlusOne){
+          this.itemEntrySortedOnCalculatedValues[i].hasPlusOne = true;
+          itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue + 1, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
+          console.log(itemUpdate);
+          this.itemEntryService.updatePrioValue(itemUpdate).subscribe( () =>{
+          })
+          console.log("a");
+        }else{
+          itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
+          this.itemEntrySortedOnCalculatedValues[i].hasPlusOne = false;
+          this.itemEntryService.updatePrioValue(itemUpdate).subscribe( () =>{
+          })
+        }
       }
     }
   }

@@ -13,6 +13,7 @@ export interface ItemEntryUpdate {
     prioValue: number;
     prioValueCalc: number;
     hasItem: boolean;
+    hasPlusOne: boolean;
 }
 
 export class LootSheetUpdate {

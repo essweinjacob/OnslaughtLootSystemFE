@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Roster } from './roster';
+import { Roster, UpdateNote } from './roster';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,15 @@ export class RosterAllEntriesService {
 
   getRosterEntries(): Observable<Roster[]>{
     return this.http.get<Roster[]>(`${this.baseUrl}`);
+  }
+
+  getNotesByName(charName: any): Observable<any>{
+    let url = "http://localhost:8080/api/getNoteByName/" + charName;
+    return this.http.get<any>(url);
+  }
+
+  updateNote(givenNote: UpdateNote): Observable<UpdateNote>{
+    let url = "http://localhost:8080/api/updateNote";
+    return this.http.put<UpdateNote>(url, givenNote);
   }
 }

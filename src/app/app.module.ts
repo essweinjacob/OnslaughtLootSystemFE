@@ -14,6 +14,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddDateDialogComponent } from './add-date-dialog/add-date-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { AdminPageComponent } from './adminpage/adminpage.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { NotesDialogComponent } from './notes-dialog/notes-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     SearchByItemNamePipe,
     AttendanceComponent,
     SearchByCharNamePipe,
-    AddDateDialogComponent
+    AddDateDialogComponent,
+    AdminPageComponent,
+    LogInComponent,
+    NotesDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +40,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     RouterModule.forRoot([]),
     MatMenuModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,12 +18,10 @@ h3 {
     padding-top: 20px!important;
 }
 
-.plusOneButton {
-    height: 30px;
-    width: 30px;
-    color: green;
+.mat-button-toggle{
+    background-color: lightblue;
 }
 
-.hasPlusOneButton {
-    color: blue;
+.mat-button-toggle-checked{
+    background-color: green;
 }

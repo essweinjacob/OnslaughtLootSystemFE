@@ -19,4 +19,9 @@ export class ItemEntryService {
   updateItem(updateItem: LootSheetUpdate): Observable<LootSheetUpdate>{
     return this.http.put<LootSheetUpdate>(`${this.postUrl}`, updateItem);
   }
+
+  updatePrioValue(updateItem: LootSheetUpdate): Observable<LootSheetUpdate>{
+    let url = "http://localhost:8080/api/updatePrioValue"
+    return this.http.put<LootSheetUpdate>(`${url}`, updateItem);
+  }
 }

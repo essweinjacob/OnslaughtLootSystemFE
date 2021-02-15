@@ -17,7 +17,7 @@ Search By Name: <input type="text" [(ngModel)]="charNameSearch"/>
                 </thead> 
                 <tbody>
                     <tr *ngFor="let char of charsAndClasses | searchByCharName: charNameSearch">
-                        <td class = "charColumn"> {{ char.charName }} </td>
+                        <td class = "charColumn"><a (click)="openNoteDialog(char.charName);">{{ char.charName }}</a> </td>
                         <td class = "dateColumn" *ngFor="let raidDay of uniqueRaidDates">
                             <span *ngIf="didPlayerAttend(raidDay, char.charName); else notChecked">
                                 <button class="checkBox" [id]="char.charName + raidDay" (click)="toggleTrueFalse(raidDay, char.charName)">&#10003;</button>

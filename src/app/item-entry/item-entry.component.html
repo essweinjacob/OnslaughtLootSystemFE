@@ -12,7 +12,7 @@
                     <tbody>
                         <tr *ngFor = "let itemEntry of itemEntrySortedOnCalculatedValues | searchByItemNamePipe: itemName | searchByCharName: charName">
                         <td> {{ itemEntry.charName }} </td>
-                        <td> {{ itemEntry.prioValueCalc }} </td>
+                        <td> {{ itemEntry.prioValueCalc }} <mat-button-toggle value="peen" (click)="togglePlusOne(itemEntry, false)" #toggleBtn><b>+1</b></mat-button-toggle></td>
                         <td> {{ itemEntry.itemName }} </td>
                         <td>    
                             <span *ngIf="!itemEntry.hasItem;else doesNotHaveItemButton">

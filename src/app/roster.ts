@@ -4,3 +4,8 @@ export class Roster {
     charClass: string;
     attendCount: number;
 }
+
+export class UpdateNote {
+    charName: string;
+    notes: string;
+}

@@ -5,6 +5,7 @@ import { GetUniqueRaidDatesService } from '../get-unique-raid-dates.service';
 import { GetUniqueCharNamesService } from '../get-unique-char-name-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDateDialogComponent } from '../add-date-dialog/add-date-dialog.component';
+import { NotesDialogComponent } from '../notes-dialog/notes-dialog.component';
 
 
 @Component({
@@ -111,8 +112,10 @@ export class AttendanceComponent implements OnInit {
     let dialogRef = this.dialog.open(AddDateDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
+      var splitDate = result.split("-");
+      splitDate = splitDate[1] + "/" + splitDate[2] +  "/" + splitDate[0];
       for(var i = 0; i < this.uniqueRaidDates.length; i++){
-        if(result == this.uniqueRaidDates[i]){
+        if(splitDate == this.uniqueRaidDates[i]){
           window.alert("This raid date already exists");
           return;
         }
@@ -120,7 +123,7 @@ export class AttendanceComponent implements OnInit {
       // Create a attendance object list with character id
       let addNewAttendance: AddAttendance[] = [];
       for(var i = 0; i <= this.uniqueCharNames.length; i++){
-        addNewAttendance.push({ charId: i, raidDate: result })
+        addNewAttendance.push({ charId: i, raidDate: splitDate })
       }
       this.attendanceService.addAttendanceDate(addNewAttendance).subscribe( () =>{
       })
@@ -132,9 +135,11 @@ export class AttendanceComponent implements OnInit {
     let dialogRef = this.dialog.open(AddDateDialogComponent);
     
     dialogRef.afterClosed().subscribe(result => {
+      var splitDate = result.split("-");
+      splitDate = splitDate[1] + "/" + splitDate[2] +  "/" + splitDate[0];
       for(var i = 0; i <= this.uniqueRaidDates.length; i++){
-        if(result == this.uniqueRaidDates[i]){
-          this.attendanceService.removeAttendanceDate(result).subscribe( () =>{
+        if(splitDate == this.uniqueRaidDates[i]){
+          this.attendanceService.removeAttendanceDate(splitDate).subscribe( () =>{
           })
           location.reload();
           return;
@@ -142,5 +147,11 @@ export class AttendanceComponent implements OnInit {
       }
       window.alert("This raid date does not exist");
     })
+  }
+
+  openNoteDialog(charName: string){
+    let dialogRef = this.dialog.open(NotesDialogComponent, {
+      data: {charName: charName}
+    });
   }
 }
