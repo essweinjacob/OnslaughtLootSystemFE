@@ -19,6 +19,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AdminPageComponent } from './adminpage/adminpage.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { NotesDialogComponent } from './notes-dialog/notes-dialog.component';
+import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NotesDialogComponent } from './notes-dialog/notes-dialog.component';
     AddDateDialogComponent,
     AdminPageComponent,
     LogInComponent,
-    NotesDialogComponent
+    NotesDialogComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,

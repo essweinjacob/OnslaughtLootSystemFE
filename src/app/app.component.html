@@ -1,9 +1,10 @@
 <nav>
     <a routerLink="">Home</a>
-    <a routerLink="login">Login</a>
-    <a routerLink="adminLootSheet">Loot Sheet</a>
-    <a routerLink="adminAttendance">Attendance</a>
-    <a routerLink="adminPage">Admin Control</a>
+    <a *ngIf="!loginService.isUserLoggedIn()" routerLink="login">Login</a>
+    <a *ngIf="loginService.isUserLoggedIn()" routerLink="logout">Log Out</a>
+    <a *ngIf="loginService.isUserLoggedIn()" routerLink="adminLootSheet">Loot Sheet</a>
+    <a *ngIf="loginService.isUserLoggedIn()" routerLink="adminAttendance">Attendance</a>
+    <a *ngIf="loginService.isUserLoggedIn()" routerLink="adminPage">Admin Control</a>
     <h3> SWEAT </h3>
 </nav>
 <router-outlet></router-outlet>

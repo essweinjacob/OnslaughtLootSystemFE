@@ -1,11 +1,9 @@
-<form #loginForm="ngForm">
-    <div class="row">
-        <div>
-            <input type="text" #userName ngModel name="userName" placeholder="Username">
-            <input type="password" #password ngModel name="password" placeholder="Password">
-        </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
+<div class="container">
+    <div>
+      User Name : <input type="text" name="username" [(ngModel)]="username">
+      Password : <input type="password" name="password" [(ngModel)]="password">
     </div>
-</form>
+    <button (click)=checkLogin() class="btn btn-success">
+      Login
+    </button>
+  </div>
