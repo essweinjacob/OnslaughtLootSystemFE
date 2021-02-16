@@ -1,7 +1,7 @@
 import { HttpClient , HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Roster, UpdateNote } from '../Models/roster';
+import { AddNewUser, Roster, UpdateNote } from '../Models/roster';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,10 @@ export class RosterAllEntriesService {
   updateNote(givenNote: UpdateNote): Observable<UpdateNote>{
     let url = "http://localhost:8080/api/updateNote";
     return this.http.put<UpdateNote>(url, givenNote);
+  }
+
+  addNewUser(newUser: AddNewUser): Observable<AddNewUser>{
+    let url = "http://localhost:8080/api/addNewUser";
+    return this.http.put<AddNewUser>(url, newUser);
   }
 }

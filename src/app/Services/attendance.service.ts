@@ -29,4 +29,9 @@ export class AttendanceService {
     let url = "http://localhost:8080/api/removeRaidDate"
     return this.http.put<string>(`${url}`, removeDate);
   }
+
+  addAttendanceForNewUser(newUserAttendance: AddAttendance[]): Observable<AddAttendance[]>{
+    let url = "http://localhost:8080/api/addAttendanceForNewUser"
+    return this.http.put<AddAttendance[]>(url, newUserAttendance);
+  }
 }
