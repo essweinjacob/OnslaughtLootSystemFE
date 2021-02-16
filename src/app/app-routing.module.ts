@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ItemEntryComponent } from './item-entry/item-entry.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AdminPageComponent } from './adminpage/adminpage.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'adminLootSheet',
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'adminAttendance',
     component: AttendanceComponent },
   { path: 'adminPage',
-    component: AdminPageComponent}
+    component: AdminPageComponent},
+  { path: 'login',
+    component: LoginComponent}
 ];
 
 @NgModule({
