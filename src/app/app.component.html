@@ -1,9 +1,9 @@
 <nav>
     <a routerLink="">Home</a>
-    <a routerLink="login">Login</a>
-    <a routerLink="adminLootSheet">Loot Sheet</a>
-    <a routerLink="adminAttendance">Attendance</a>
-    <a routerLink="adminPage">Admin Control</a>
+    <a *ngIf="!this.loginStatus" routerLink="login">Login</a>
+    <a *ngIf="this.loginStatus"routerLink="adminLootSheet">Loot Sheet</a>
+    <a *ngIf="this.loginStatus"routerLink="adminAttendance">Attendance</a>
+    <a *ngIf="this.loginStatus"routerLink="adminPage">Admin Control</a>
     <h3> SWEAT </h3>
 </nav>
 <router-outlet></router-outlet>

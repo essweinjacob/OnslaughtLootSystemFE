@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'sweat-frontend';
 
-  constructor(){}
+  loginStatus = false
+  constructor(private auth: AuthService){}
 
   ngOnInit(){
-    
+    if(localStorage.getItem("loggedIn") == 'true'){
+      this.loginStatus = true;
+    }else{
+      this.loginStatus = false;
+    }
   }
 }
