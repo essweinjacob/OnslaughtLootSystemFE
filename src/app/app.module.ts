@@ -23,6 +23,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { PermsGuard } from './perms.guard';
 import { RaiderItemEntryComponent } from './raider-item-entry/raider-item-entry.component';
+import { RaiderAttendanceComponent } from './raider-attendance/raider-attendance.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RaiderItemEntryComponent } from './raider-item-entry/raider-item-entry.
     AdminPageComponent,
     NotesDialogComponent,
     LoginComponent,
-    RaiderItemEntryComponent
+    RaiderItemEntryComponent,
+    RaiderAttendanceComponent
   ],
   imports: [
     BrowserModule,

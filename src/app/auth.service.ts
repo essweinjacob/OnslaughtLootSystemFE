@@ -56,5 +56,6 @@ export class AuthService{
   logoutUser(){
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('admin');
+    this.router.navigate(['login']);
   }
 }

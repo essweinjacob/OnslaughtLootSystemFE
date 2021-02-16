@@ -2,8 +2,10 @@
     <a routerLink="">Home</a>
     <a *ngIf="!auth.loggedIn()" routerLink="login">Login</a>
     <a *ngIf="auth.loggedIn()" (click)=auth.logoutUser()>Logoff</a>
-    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminLootSheet">Loot Sheet</a>
-    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminAttendance">Attendance</a>
+    <a *ngIf="auth.loggedIn()" routerLink="lootsheet">Loot Sheet</a>
+    <a *ngIf="auth.loggedIn()" routerLink="attendance">Attendance</a>
+    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminLootSheet">Admin Loot Sheet</a>
+    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminAttendance">Admin Attendance</a>
     <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminPage">Admin Control</a>
     <h3> SWEAT </h3>
 </nav>
