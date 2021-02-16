@@ -17,9 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AdminPageComponent } from './adminpage/adminpage.component';
-import { LogInComponent } from './log-in/log-in.component';
 import { NotesDialogComponent } from './notes-dialog/notes-dialog.component';
-import { LogOutComponent } from './log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +28,7 @@ import { LogOutComponent } from './log-out/log-out.component';
     SearchByCharNamePipe,
     AddDateDialogComponent,
     AdminPageComponent,
-    LogInComponent,
     NotesDialogComponent,
-    LogOutComponent
   ],
   imports: [
     BrowserModule,

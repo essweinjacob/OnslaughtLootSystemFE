@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
 export class AppComponent implements OnInit{
   title = 'sweat-frontend';
 
-  constructor(private loginService: AuthenticationService){}
+  constructor(){}
 
   ngOnInit(){
     
