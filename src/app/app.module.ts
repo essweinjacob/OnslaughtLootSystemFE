@@ -19,6 +19,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AdminPageComponent } from './adminpage/adminpage.component';
 import { NotesDialogComponent } from './notes-dialog/notes-dialog.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './auth.service';
+import { PermsGuard } from './perms.guard';
+import { RaiderItemEntryComponent } from './raider-item-entry/raider-item-entry.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,7 @@ import { LoginComponent } from './login/login.component';
     AdminPageComponent,
     NotesDialogComponent,
     LoginComponent,
+    RaiderItemEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,7 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatButtonToggleModule
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService, PermsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

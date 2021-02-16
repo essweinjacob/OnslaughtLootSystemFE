@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -6,17 +6,9 @@ import { AuthService } from './auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'sweat-frontend';
 
   loginStatus = false
-  constructor(private auth: AuthService){}
-
-  ngOnInit(){
-    if(localStorage.getItem("loggedIn") == 'true'){
-      this.loginStatus = true;
-    }else{
-      this.loginStatus = false;
-    }
-  }
+  constructor(public auth: AuthService){}
 }

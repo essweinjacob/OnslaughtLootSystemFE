@@ -6,19 +6,18 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class PermsGuard implements CanActivate {
   constructor(private auth: AuthService,
-              private route: Router){
+    private route: Router){
 
-  }
-
+}
   canActivate(): boolean{
-    if(this.auth.loggedIn()){
+    if(this.auth.isAdmin()){
       return true;
     }else{
       this.route.navigate(['/login']);
       return false;
     }
   }
+  
 }

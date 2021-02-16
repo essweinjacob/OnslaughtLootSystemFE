@@ -3,6 +3,7 @@ export class Roster {
     charName: string;
     charClass: string;
     attendCount: number;
+    perms: string;
 }
 
 export class UpdateNote {
