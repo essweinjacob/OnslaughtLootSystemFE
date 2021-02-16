@@ -1,7 +1,7 @@
 import { HttpClient , HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Roster, UpdateNote } from './roster';
+import { Roster, UpdateNote } from '../Models/roster';
 
 @Injectable({
   providedIn: 'root'

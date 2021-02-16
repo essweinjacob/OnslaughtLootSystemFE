@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddDateDialogComponent } from 'app/add-date-dialog/add-date-dialog.component';
-import { Attendance, CharNameAndRoster, AttUpdate, AddAttendance } from 'app/attendance';
-import { AttendanceService } from 'app/attendance.service';
-import { GetUniqueCharNamesService } from 'app/get-unique-char-name-service.service';
-import { GetUniqueRaidDatesService } from 'app/get-unique-raid-dates.service';
-import { NotesDialogComponent } from 'app/notes-dialog/notes-dialog.component';
+import { AddDateDialogComponent } from 'app/Components/add-date-dialog/add-date-dialog.component';
+import { Attendance, CharNameAndRoster, AttUpdate, AddAttendance } from 'app/Models/attendance';
+import { AttendanceService } from 'app/Services/attendance.service';
+import { GetUniqueCharNamesService } from 'app/Services/get-unique-char-name-service.service';
+import { GetUniqueRaidDatesService } from 'app/Services/get-unique-raid-dates.service';
+import { NotesDialogComponent } from 'app/Components/notes-dialog/notes-dialog.component';
 
 @Component({
   selector: 'app-raider-attendance',

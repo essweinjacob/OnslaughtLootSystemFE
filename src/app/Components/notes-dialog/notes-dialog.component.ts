@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddDateDialogComponent } from 'app/add-date-dialog/add-date-dialog.component';
-import { UpdateNote } from 'app/roster';
-import { RosterAllEntriesService } from '../roster-all-entries.service';
+import { AddDateDialogComponent } from 'app/Components/add-date-dialog/add-date-dialog.component';
+import { UpdateNote } from 'app/Models/roster';
+import { RosterAllEntriesService } from '../../Services/roster-all-entries.service';
 
 @Component({
   selector: 'app-notes-dialog',

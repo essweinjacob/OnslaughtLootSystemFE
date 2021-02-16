@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RosterAllEntriesService } from './roster-all-entries.service';
-import { Roster } from './roster';
+import { Roster } from '../Models/roster';
 
 @Injectable({
   providedIn: 'root'

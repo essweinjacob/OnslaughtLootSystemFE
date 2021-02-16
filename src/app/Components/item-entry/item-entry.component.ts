@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemEntryService } from '../item-entry.service';
-import { ItemEntry, LootSheetUpdate, ItemEntryUpdate } from '../itemEntry';
-import { RosterAllEntriesService } from '../roster-all-entries.service';
-import { Roster } from '../roster';
+import { ItemEntryService } from '../../Services/item-entry.service';
+import { ItemEntry, LootSheetUpdate, ItemEntryUpdate } from '../../Models/itemEntry';
+import { RosterAllEntriesService } from '../../Services/roster-all-entries.service';
+import { Roster } from '../../Models/roster';
 
 @Component({
   selector: 'app-item-entry',
@@ -107,8 +107,9 @@ export class ItemEntryComponent implements OnInit {
         //console.log(this.roster[i].charName);
       }
     }
+    console.log(baseValue, this.totalRaidCount, raidsAttended);
     //console.log(Math.floor(baseValue + ((this.totalRaidCount * 0.4) + (raidsAttended/this.totalRaidCount * 0.1))))
-    return Math.floor(baseValue + ((this.totalRaidCount * 0.4) + (raidsAttended/this.totalRaidCount * 0.1)));
+    return Math.floor(baseValue + ((raidsAttended * 0.4) + (raidsAttended/this.totalRaidCount * 0.1)));
   }
     
   findIdByName(givenName: string): number {

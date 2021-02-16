@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Attendance, CharNameAndRoster, AddAttendance, AttUpdate } from '../attendance';
-import { AttendanceService } from '../attendance.service';
-import { GetUniqueRaidDatesService } from '../get-unique-raid-dates.service';
-import { GetUniqueCharNamesService } from '../get-unique-char-name-service.service';
+import { Attendance, CharNameAndRoster, AddAttendance, AttUpdate } from '../../Models/attendance';
+import { AttendanceService } from '../../Services/attendance.service';
+import { GetUniqueRaidDatesService } from '../../Services/get-unique-raid-dates.service';
+import { GetUniqueCharNamesService } from '../../Services/get-unique-char-name-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddDateDialogComponent } from '../add-date-dialog/add-date-dialog.component';
 import { NotesDialogComponent } from '../notes-dialog/notes-dialog.component';
