@@ -29,4 +29,9 @@ export class RosterAllEntriesService {
     let url = "http://localhost:8080/api/addNewUser";
     return this.http.put<AddNewUser>(url, newUser);
   }
+
+  removeUser(user: string): Observable<string>{
+    let url = "http://localhost:8080/api/removeUserFromRoster"
+    return this.http.put<string>(url, user);
+  }
 }

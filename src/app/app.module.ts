@@ -27,6 +27,7 @@ import { RaiderItemEntryComponent } from './Components/raider-item-entry/raider-
 import { RaiderAttendanceComponent } from './Components/raider-attendance/raider-attendance.component';
 import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 import { AddNewUserDialogComponent } from './Components/add-new-user-dialog/add-new-user-dialog.component';
+import { RemoveUserDialogComponent } from './Components/remove-user-dialog/remove-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AddNewUserDialogComponent } from './Components/add-new-user-dialog/add-
     RaiderAttendanceComponent,
     ChangePasswordComponent,
     AddNewUserDialogComponent,
+    RemoveUserDialogComponent,
   ],
   imports: [
     BrowserModule,

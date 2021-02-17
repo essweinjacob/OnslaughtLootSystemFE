@@ -4,6 +4,7 @@ import { GetUniqueRaidDatesService } from '../../Services/get-unique-raid-dates.
 import { Roster } from 'app/Models/roster';
 import { AddAttendance } from 'app/Models/attendance';
 import { AttendanceService } from '../../Services/attendance.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-new-user-dialog',
@@ -26,7 +27,8 @@ export class AddNewUserDialogComponent implements OnInit {
 
   constructor(private rosterAllEntriesService: RosterAllEntriesService,
               private uniqueRaidDateService: GetUniqueRaidDatesService,
-              private attendanceService: AttendanceService) { }
+              private attendanceService: AttendanceService,
+              public dialogRef: MatDialogRef<AddNewUserDialogComponent>) { }
 
   ngOnInit(): void {
     this.uniqueRaidDateService.getUniqueRaidDates().subscribe((data: String[]) => {
@@ -58,6 +60,7 @@ export class AddNewUserDialogComponent implements OnInit {
         this.attendanceService.addAttendanceForNewUser(newUserRaidDate).subscribe(response => {
           if(response){
             console.log(this.charName, " has been added to raid dates");
+            this.dialogRef.close();
           }else{
             console.log("something has gone terrible wrong");
           }
