@@ -18,3 +18,8 @@ export class UpdateNote {
     charName: string;
     notes: string;
 }
+
+export class ChangePassword{
+    charName: string;
+    password: string;
+}

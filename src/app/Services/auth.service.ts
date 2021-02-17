@@ -22,10 +22,12 @@ export class AuthService{
       if(data){
         this.loggedInStatus = true;
         localStorage.setItem('loggedIn', 'true');
+        localStorage.setItem('charName', charName);
         this.router.navigate(['/']);
         this.getPerms(charName);
       }else{
         this.loggedInStatus = false;
+        localStorage.removeItem('charName');
         localStorage.removeItem('loggedIn');
         localStorage.removeItem('admin');
         window.alert("Incorrect login information");
@@ -54,6 +56,7 @@ export class AuthService{
   }
 
   logoutUser(){
+    localStorage.removeItem('charName');
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('admin');
     this.router.navigate(['login']);

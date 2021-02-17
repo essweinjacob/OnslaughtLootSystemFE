@@ -7,6 +7,7 @@
     <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminLootSheet">Admin Loot Sheet</a>
     <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminAttendance">Admin Attendance</a>
     <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminPage">Admin Control</a>
+    <a *ngIf="auth.loggedIn()" routerLink="profile">Profile</a>
     <h3> SWEAT </h3>
 </nav>
 <router-outlet></router-outlet>

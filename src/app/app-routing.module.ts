@@ -9,7 +9,8 @@ import { AuthGuard } from './auth.guard';
 import { PermsGuard } from './perms.guard';
 import { RaiderItemEntryComponent } from './Components/raider-item-entry/raider-item-entry.component';
 import { RaiderAttendanceComponent } from './Components/raider-attendance/raider-attendance.component';
-import { ChangePasswordComponent } from './Components/change-password/change-password.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'adminLootSheet',
@@ -29,9 +30,9 @@ const routes: Routes = [
   { path: 'attendance',
     component: RaiderAttendanceComponent,
     canActivate: [AuthGuard] },
-  { path: 'changePassword',
-    component: ChangePasswordComponent,
-    canActivate: [AuthGuard]},
+  { path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard] },
 
 ];
 

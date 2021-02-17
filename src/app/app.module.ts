@@ -25,9 +25,10 @@ import { AuthService } from './Services/auth.service';
 import { PermsGuard } from './perms.guard';
 import { RaiderItemEntryComponent } from './Components/raider-item-entry/raider-item-entry.component';
 import { RaiderAttendanceComponent } from './Components/raider-attendance/raider-attendance.component';
-import { ChangePasswordComponent } from './Components/change-password/change-password.component';
 import { AddNewUserDialogComponent } from './Components/add-new-user-dialog/add-new-user-dialog.component';
 import { RemoveUserDialogComponent } from './Components/remove-user-dialog/remove-user-dialog.component';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,10 @@ import { RemoveUserDialogComponent } from './Components/remove-user-dialog/remov
     LoginComponent,
     RaiderItemEntryComponent,
     RaiderAttendanceComponent,
-    ChangePasswordComponent,
     AddNewUserDialogComponent,
     RemoveUserDialogComponent,
+    ResetPasswordComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
