@@ -23,3 +23,8 @@ export class ChangePassword{
     charName: string;
     password: string;
 }
+
+export class isAdminCall {
+    username: string;
+    token: string;
+}

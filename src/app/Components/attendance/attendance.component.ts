@@ -6,6 +6,7 @@ import { GetUniqueCharNamesService } from '../../Services/get-unique-char-name-s
 import { MatDialog } from '@angular/material/dialog';
 import { AddDateDialogComponent } from '../add-date-dialog/add-date-dialog.component';
 import { NotesDialogComponent } from '../notes-dialog/notes-dialog.component';
+import { UserAuthenticationService } from 'app/Services/user-authentication.service';
 
 
 @Component({
@@ -37,45 +38,40 @@ export class AttendanceComponent implements OnInit {
   constructor(private attendanceService: AttendanceService,
               private uniqueAttendanceService: GetUniqueRaidDatesService,
               private uniqueCharNamesService: GetUniqueCharNamesService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private userAuth: UserAuthenticationService) { }
 
   ngOnInit(): void {
+    this.userAuth.verifyUsers();
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;
       this.attendanceLength = this.attendances.length;
-      //console.log(this.attendanceLength);
     });
 
     this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
       this.uniqueRaidDates = data;
-      //console.log(this.uniqueRaidDates);
       this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
     })
 
     this.uniqueCharNamesService.getUniqueCharNames().subscribe((data: String[]) => {
       this.uniqueCharNames = data;
-      //console.log(this.uniqueCharNames);
       
       if(this.attendanceLength == undefined){
         this.ngOnInit();
       }
       for(var i = 0; i < this.uniqueCharNames.length; i++){
         for(var j = 0; j < this.attendanceLength; j++){
-          //console.log(this.uniqueCharNames[i], ": ", i, this.attendances[j].charName, ": ", );
           if(this.uniqueCharNames[i] == this.attendances[j].charName){
             this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
             break;
           }
         }
       }
-
-      //console.log(this.charsAndClasses);
     })
     
   } 
 
   didPlayerAttend(raidDay: string, charName: string): boolean {
-    //console.log("here");
     for(var i = 0; i < this.attendances.length; i++){
       if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName && this.attendances[i].didAttend == true){
         return true;
@@ -103,7 +99,6 @@ export class AttendanceComponent implements OnInit {
         attUpdate.didAttend = true;
       }
     }
-    //console.log(attUpdate);
     this.attendanceService.updateAttendance(attUpdate).subscribe( () =>{
     })
   }

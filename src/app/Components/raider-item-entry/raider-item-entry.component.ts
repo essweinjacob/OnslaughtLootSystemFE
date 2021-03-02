@@ -32,9 +32,7 @@ export class RaiderItemEntryComponent implements OnInit {
   ngOnInit(): void {
     this.rosterAllEntriesService.getRosterEntries().subscribe((data: Roster[]) => {
       this.roster = data;
-      //console.log("here",this.roster);
       this.rosterLength = this.roster.length;
-      //console.log(this.rosterLength);
 
       // Get the max amount of raids
       for(var i = 0; i < this.rosterLength; i++){
@@ -65,28 +63,19 @@ export class RaiderItemEntryComponent implements OnInit {
 
   getPrioValue(itemObj: ItemEntry): number{
     var baseValue = itemObj.prioValue;
-    //console.log(baseValue);
     var raidsAttended = 0;
-    //console.log(this.rosterLength);
     for(var i = 0; i < this.rosterLength; i++){
       if(itemObj.charName == this.roster[i].charName){
         raidsAttended = this.roster[i].attendCount;
-        //console.log(raidsAttended);
         break;
-      }else{
-        //console.log(this.roster[i].charName);
       }
     }
-    //console.log(Math.floor(baseValue + ((this.totalRaidCount * 0.4) + (raidsAttended/this.totalRaidCount * 0.1))))
     return Math.floor(baseValue + ((raidsAttended * 0.4) + (raidsAttended/this.totalRaidCount * 0.1)));
   }
     
   findIdByName(givenName: string): number {
-    //console.log(givenName);
     for(var i = 0; i < this.rosterLength; i++){
-      //console.log(givenName, this.roster[i].charName);
       if(givenName == this.roster[i].charName){
-        //console.log("here");
         return this.roster[i].charId;
       }
     }

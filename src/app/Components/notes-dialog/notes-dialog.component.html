@@ -1,5 +1,5 @@
 <h4>Enter Note:</h4>
 <input type="text" matInput [(ngModel)]="this.note">
-<div mat-dialog-action>
+<div *ngIf="auth.isAdmin()" mat-dialog-action>
     <button (click)="updateNote()" mat-button [mat-dialog-close]="this.note">Submit</button>
 </div>

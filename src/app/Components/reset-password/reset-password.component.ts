@@ -10,7 +10,7 @@ import { RosterAllEntriesService } from 'app/Services/roster-all-entries.service
 })
 export class ResetPasswordComponent implements OnInit {
 
-  charName = localStorage.getItem('charName');
+  charName = sessionStorage.getItem('username');
 
   password: string;
   newPassword: string;
@@ -28,7 +28,6 @@ export class ResetPasswordComponent implements OnInit {
         let newPassword: ChangePassword = {charName: this.charName, password: this.newPassword};
         this.rosterService.changePassword(newPassword).subscribe(response => {
           if(response){
-            console.log("Password has been changed");
             this.dialogRef.close();
           }else{
             window.alert("Something went terribly wrong");

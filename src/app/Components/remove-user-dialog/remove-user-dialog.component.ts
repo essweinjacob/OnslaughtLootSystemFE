@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { RosterAllEntriesService } from 'app/Services/roster-all-entries.service';
+import { UserAuthenticationService } from 'app/Services/user-authentication.service';
 
 @Component({
   selector: 'app-remove-user-dialog',
@@ -12,9 +13,11 @@ export class RemoveUserDialogComponent implements OnInit {
   charName: string;
 
   constructor(private rosterService: RosterAllEntriesService,
-              private dialogRef: MatDialogRef<RemoveUserDialogComponent>) { }
+              private dialogRef: MatDialogRef<RemoveUserDialogComponent>,
+              private userAuth: UserAuthenticationService) { }
 
   ngOnInit(): void {
+    this.userAuth.verifyUsers();
   }
 
   submit(){

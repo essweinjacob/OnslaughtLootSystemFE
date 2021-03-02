@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -29,6 +29,8 @@ import { AddNewUserDialogComponent } from './Components/add-new-user-dialog/add-
 import { RemoveUserDialogComponent } from './Components/remove-user-dialog/remove-user-dialog.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
 import { ProfileComponent } from './Components/profile/profile.component';
+
+import { BasicAuthHttpInterceptorService} from './Services/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
     MatButtonToggleModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService, PermsGuard],
+  providers: [AuthGuard, AuthService, PermsGuard, {provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

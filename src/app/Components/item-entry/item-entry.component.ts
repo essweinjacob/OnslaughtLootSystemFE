@@ -3,6 +3,7 @@ import { ItemEntryService } from '../../Services/item-entry.service';
 import { ItemEntry, LootSheetUpdate, ItemEntryUpdate } from '../../Models/itemEntry';
 import { RosterAllEntriesService } from '../../Services/roster-all-entries.service';
 import { Roster } from '../../Models/roster';
+import { UserAuthenticationService } from 'app/Services/user-authentication.service';
 
 @Component({
   selector: 'app-item-entry',
@@ -27,14 +28,14 @@ export class ItemEntryComponent implements OnInit {
   totalRaidCount: number = 0;
 
   constructor(private itemEntryService: ItemEntryService,
-              private rosterAllEntriesService: RosterAllEntriesService) { }
+              private rosterAllEntriesService: RosterAllEntriesService,
+              private userAuth: UserAuthenticationService) { }
 
   ngOnInit(): void {
+    this.userAuth.verifyUsers();
     this.rosterAllEntriesService.getRosterEntries().subscribe((data: Roster[]) => {
       this.roster = data;
-      //console.log("here",this.roster);
       this.rosterLength = this.roster.length;
-      //console.log(this.rosterLength);
 
       // Get the max amount of raids
       for(var i = 0; i < this.rosterLength; i++){
@@ -73,8 +74,7 @@ export class ItemEntryComponent implements OnInit {
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).classList.remove("haveItem");
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).innerText = "Does Not Have Item";
 
-          itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
-          //console.log(itemUpdate);  
+          itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem}; 
           this.itemEntryService.updateItem(itemUpdate).subscribe( () =>{
           })
         }else{
@@ -85,7 +85,6 @@ export class ItemEntryComponent implements OnInit {
           document.getElementById(itemEntry.charName+itemEntry.itemName+itemEntry.prioValue).innerText = "Has Item";
 
           itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
-          //console.log(itemUpdate);
           this.itemEntryService.updateItem(itemUpdate).subscribe( () =>{
           })
         }
@@ -95,29 +94,19 @@ export class ItemEntryComponent implements OnInit {
 
   getPrioValue(itemObj: ItemEntry): number{
     var baseValue = itemObj.prioValue;
-    //console.log(baseValue);
     var raidsAttended = 0;
-    //console.log(this.rosterLength);
     for(var i = 0; i < this.rosterLength; i++){
       if(itemObj.charName == this.roster[i].charName){
         raidsAttended = this.roster[i].attendCount;
-        //console.log(raidsAttended);
         break;
-      }else{
-        //console.log(this.roster[i].charName);
       }
     }
-    console.log(baseValue, this.totalRaidCount, raidsAttended);
-    //console.log(Math.floor(baseValue + ((this.totalRaidCount * 0.4) + (raidsAttended/this.totalRaidCount * 0.1))))
     return Math.floor(baseValue + ((raidsAttended * 0.4) + (raidsAttended/this.totalRaidCount * 0.1)));
   }
     
   findIdByName(givenName: string): number {
-    //console.log(givenName);
     for(var i = 0; i < this.rosterLength; i++){
-      //console.log(givenName, this.roster[i].charName);
       if(givenName == this.roster[i].charName){
-        //console.log("here");
         return this.roster[i].charId;
       }
     }
@@ -130,10 +119,8 @@ export class ItemEntryComponent implements OnInit {
         if(!this.itemEntrySortedOnCalculatedValues[i].hasPlusOne){
           this.itemEntrySortedOnCalculatedValues[i].hasPlusOne = true;
           itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue + 1, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
-          console.log(itemUpdate);
           this.itemEntryService.updatePrioValue(itemUpdate).subscribe( () =>{
           })
-          console.log("a");
         }else{
           itemUpdate = {charId: this.findIdByName(this.itemEntrySortedOnCalculatedValues[i].charName) , itemName: itemEntry.itemName, prioValue: this.itemEntrySortedOnCalculatedValues[i].prioValue, hasItem: this.itemEntrySortedOnCalculatedValues[i].hasItem};
           this.itemEntrySortedOnCalculatedValues[i].hasPlusOne = false;

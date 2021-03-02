@@ -14,51 +14,45 @@ export class AuthService{
               private router: Router,
               private rosterAllEntriesService: RosterAllEntriesService) { }
 
-  getUserDetails(charName: string, password: string){
-    return this.http.post('http://localhost:8080/api/auth', {
-      charName,
+  getUserDetails(username: string, password: string){
+    return this.http.post<any>('http://localhost:8080/authenticate', {
+      username,
       password
-    }).subscribe(data =>{
-      if(data){
+    }).subscribe((data:any) =>{
+      if(data.token){
         this.loggedInStatus = true;
-        localStorage.setItem('loggedIn', 'true');
-        localStorage.setItem('charName', charName);
+        sessionStorage.setItem('username', username);
+        let tokenStr = 'Bearer ' + data.token;
+        sessionStorage.setItem('token', tokenStr);
         this.router.navigate(['/']);
-        this.getPerms(charName);
+        this.http.post<any>('http://localhost:8080/api/isAdmin', {username}).subscribe(data => {
+          if(data){
+            sessionStorage.setItem('admin', "true");
+          }
+        })
+      return data;
       }else{
         this.loggedInStatus = false;
-        localStorage.removeItem('charName');
-        localStorage.removeItem('loggedIn');
-        localStorage.removeItem('admin');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('loggedIn');
+        sessionStorage.removeItem('admin');
         window.alert("Incorrect login information");
       }
     })
   }
 
   loggedIn(){
-    return localStorage.getItem('loggedIn');
-  }
-
-  getPerms(charName: string){
-    return this.http.post('http://localhost:8080/api/roleAuth', {
-      charName
-    }).subscribe(data =>{
-      if(data){
-        localStorage.setItem('admin','true');
-      }else{
-        localStorage.removeItem('admin');
-      }
-    })
+    return sessionStorage.getItem('token');
   }
 
   isAdmin(){
-    return localStorage.getItem('admin');
+    return sessionStorage.getItem('admin');
   }
-
+  
   logoutUser(){
-    localStorage.removeItem('charName');
-    localStorage.removeItem('loggedIn');
-    localStorage.removeItem('admin');
+    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('admin');
     this.router.navigate(['login']);
   }
 }

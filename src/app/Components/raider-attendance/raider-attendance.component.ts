@@ -6,6 +6,7 @@ import { AttendanceService } from 'app/Services/attendance.service';
 import { GetUniqueCharNamesService } from 'app/Services/get-unique-char-name-service.service';
 import { GetUniqueRaidDatesService } from 'app/Services/get-unique-raid-dates.service';
 import { NotesDialogComponent } from 'app/Components/notes-dialog/notes-dialog.component';
+import { UserAuthenticationService } from 'app/Services/user-authentication.service';
 
 @Component({
   selector: 'app-raider-attendance',
@@ -39,42 +40,36 @@ export class RaiderAttendanceComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;
       this.attendanceLength = this.attendances.length;
-      //console.log(this.attendanceLength);
     });
 
     this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
       this.uniqueRaidDates = data;
-      //console.log(this.uniqueRaidDates);
       this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
     })
 
     this.uniqueCharNamesService.getUniqueCharNames().subscribe((data: String[]) => {
       this.uniqueCharNames = data;
-      //console.log(this.uniqueCharNames);
       
       if(this.attendanceLength == undefined){
         this.ngOnInit();
       }
       for(var i = 0; i < this.uniqueCharNames.length; i++){
         for(var j = 0; j < this.attendanceLength; j++){
-          //console.log(this.uniqueCharNames[i], ": ", i, this.attendances[j].charName, ": ", );
           if(this.uniqueCharNames[i] == this.attendances[j].charName){
             this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
             break;
           }
         }
       }
-
-      //console.log(this.charsAndClasses);
     })
     
   } 
 
   didPlayerAttend(raidDay: string, charName: string): boolean {
-    //console.log("here");
     for(var i = 0; i < this.attendances.length; i++){
       if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName && this.attendances[i].didAttend == true){
         return true;

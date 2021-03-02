@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthenticationService } from 'app/Services/user-authentication.service';
 
 @Component({
   selector: 'app-add-date-dialog',
@@ -9,9 +10,10 @@ export class AddDateDialogComponent implements OnInit {
 
   givenDate: string;
   
-  constructor() { }
+  constructor(private userAuth: UserAuthenticationService) { }
 
   ngOnInit(): void {
+    this.userAuth.verifyUsers();
   }
 
 }
