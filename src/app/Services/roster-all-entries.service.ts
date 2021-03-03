@@ -37,6 +37,6 @@ export class RosterAllEntriesService {
 
   changePassword(newPassword: ChangePassword): Observable<ChangePassword>{
     let url = "http://localhost:8080/api/changePassword"
-    return this.http.post<ChangePassword>(url, newPassword);
+    return this.http.put<ChangePassword>(url, newPassword);
   }
 }
