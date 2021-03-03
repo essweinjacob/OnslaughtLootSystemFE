@@ -31,6 +31,7 @@ import { ResetPasswordComponent } from './Components/reset-password/reset-passwo
 import { ProfileComponent } from './Components/profile/profile.component';
 
 import { BasicAuthHttpInterceptorService} from './Services/basic-auth-http-interceptor.service';
+import { CleanLootSheetVerifyComponent } from './Components/clean-loot-sheet-verify/clean-loot-sheet-verify.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { BasicAuthHttpInterceptorService} from './Services/basic-auth-http-inter
     RemoveUserDialogComponent,
     ResetPasswordComponent,
     ProfileComponent,
+    CleanLootSheetVerifyComponent,
   ],
   imports: [
     BrowserModule,
