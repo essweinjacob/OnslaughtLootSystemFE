@@ -20,7 +20,8 @@ export class UpdateNote {
 }
 
 export class ChangePassword{
-    charName: string;
+    username: string;
+    oldPassword: string;
     password: string;
 }
 

@@ -25,12 +25,13 @@ export class ResetPasswordComponent implements OnInit {
   submit(){
     if(this.password != this.newPassword){
       if(this.newPassword == this.verifyNewPassword){
-        let newPassword: ChangePassword = {charName: this.charName, password: this.newPassword};
+        let newPassword: ChangePassword = {username: this.charName, oldPassword: this.password, password: this.newPassword};
         this.rosterService.changePassword(newPassword).subscribe(response => {
           if(response){
             this.dialogRef.close();
+            window.alert("Password changed successfully");
           }else{
-            window.alert("Something went terribly wrong");
+            window.alert("Old Password did not match");
           }
         })
       }else{
