@@ -26,7 +26,7 @@ export class RosterAllEntriesService {
   }
 
   addNewUser(newUser: AddNewUser): Observable<AddNewUser>{
-    let url = "http://localhost:8080/api/addNewUser";
+    let url = "http://localhost:8080/api/addNewUserRoster";
     return this.http.put<AddNewUser>(url, newUser);
   }
 

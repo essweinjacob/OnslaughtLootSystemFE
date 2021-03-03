@@ -9,8 +9,6 @@ export class Roster {
 export class AddNewUser{
     charName: string;
     charClass: string;
-    password: string;
-    perms: string;
     role: string;
 }
 

@@ -6,6 +6,7 @@ import { AddAttendance } from 'app/Models/attendance';
 import { AttendanceService } from '../../Services/attendance.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserAuthenticationService } from 'app/Services/user-authentication.service';
+import { UserRepositoryService } from 'app/Services/user-repository.service';
 
 @Component({
   selector: 'app-add-new-user-dialog',
@@ -30,7 +31,8 @@ export class AddNewUserDialogComponent implements OnInit {
               private uniqueRaidDateService: GetUniqueRaidDatesService,
               private attendanceService: AttendanceService,
               public dialogRef: MatDialogRef<AddNewUserDialogComponent>,
-              private userAuth: UserAuthenticationService) { }
+              private userAuth: UserAuthenticationService,
+              private userRepositoryService: UserRepositoryService) { }
 
   ngOnInit(): void {
     this.userAuth.verifyUsers();
@@ -47,10 +49,10 @@ export class AddNewUserDialogComponent implements OnInit {
   }
 
   submit(){
-    let newUser = {charName: this.charName, charClass: this.charClass,
-                   password: this.password, perms: this.perms, role: this.role}
+    let newRosterUser = {charName: this.charName, charClass: this.charClass, role: this.role}
     
-    this.rosterAllEntriesService.addNewUser(newUser).subscribe(result =>{
+    // Add to roster
+    this.rosterAllEntriesService.addNewUser(newRosterUser).subscribe(result =>{
       if(result){
         let id: number;
         id = Number.parseInt(JSON.stringify(result));
@@ -58,9 +60,21 @@ export class AddNewUserDialogComponent implements OnInit {
         for(var i = 0; i < this.uniqueRaidDatesAmount; i++){
           newUserRaidDate.push({charId: id, raidDate: this.uniqueRaidDates[i].toString()})
         }
+        
+        // Add to attendance
         this.attendanceService.addAttendanceForNewUser(newUserRaidDate).subscribe(response => {
-          if(response){
+          if(!response){
+            window.alert("Adding attendance failed")
+          }
+        })
+
+        let newUser = {username: this.charName, perms: this.perms, password: this.password}
+        this.userRepositoryService.addNewUser(newUser).subscribe(data => {
+          if(data){
+            window.alert("User has been added");
             this.dialogRef.close();
+          }else{
+            window.alert("Adding user to users repoistiory failed");
           }
         })
       }else{
