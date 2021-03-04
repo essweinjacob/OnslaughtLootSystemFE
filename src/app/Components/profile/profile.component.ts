@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -9,9 +10,11 @@ import { ResetPasswordComponent } from '../reset-password/reset-password.compone
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Sweat | Profile");
   }
 
   resetPassword(){

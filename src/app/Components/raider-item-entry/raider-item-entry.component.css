@@ -1,8 +1,25 @@
+
+.table thead th {
+    letter-spacing: 1px;
+    border-top: 1px solid #202225;
+    border-bottom: 1px solid #202225;
+}
+
+.table td {
+    border-top: 1px solid #202225;
+}
+
+thead {
+    color: white;
+}
+
 .doesNotHaveItem {
     width: 160px;
     position: relative;
     color: white;
     background: blue;
+    box-shadow: 1px 1px #202225;
+    border-radius: 2px;
 }
 
 .hasItem {
@@ -10,10 +27,15 @@
     position: relative;
     color: white;
     background-color: red;
+    box-shadow: 1px 1px #202225;
+    border-radius: 2px;
 }
 
-h3 {
+.lootListHeader {
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 0px!important;
     border-top-width: 8px!important;
     padding-top: 20px!important;
+    text-align: unset!important;
 }

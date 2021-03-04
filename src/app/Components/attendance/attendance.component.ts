@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddDateDialogComponent } from '../add-date-dialog/add-date-dialog.component';
 import { NotesDialogComponent } from '../notes-dialog/notes-dialog.component';
 import { UserAuthenticationService } from 'app/Services/user-authentication.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -39,9 +40,11 @@ export class AttendanceComponent implements OnInit {
               private uniqueAttendanceService: GetUniqueRaidDatesService,
               private uniqueCharNamesService: GetUniqueCharNamesService,
               public dialog: MatDialog,
-              private userAuth: UserAuthenticationService) { }
+              private userAuth: UserAuthenticationService,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Sweat | Admin Attendance");
     this.userAuth.verifyUsers();
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;

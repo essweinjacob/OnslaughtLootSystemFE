@@ -4,6 +4,7 @@ import { ItemEntry, LootSheetUpdate, ItemEntryUpdate } from '../../Models/itemEn
 import { RosterAllEntriesService } from '../../Services/roster-all-entries.service';
 import { Roster } from '../../Models/roster';
 import { UserAuthenticationService } from 'app/Services/user-authentication.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-item-entry',
@@ -29,9 +30,11 @@ export class ItemEntryComponent implements OnInit {
 
   constructor(private itemEntryService: ItemEntryService,
               private rosterAllEntriesService: RosterAllEntriesService,
-              private userAuth: UserAuthenticationService) { }
+              private userAuth: UserAuthenticationService,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Sweat | Admin Loot Sheet");
     this.userAuth.verifyUsers();
     this.rosterAllEntriesService.getRosterEntries().subscribe((data: Roster[]) => {
       this.roster = data;

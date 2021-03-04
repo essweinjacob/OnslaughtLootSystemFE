@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { ItemEntryComponent } from './Components/item-entry/item-entry.component';
@@ -63,7 +64,8 @@ import { CleanLootSheetVerifyComponent } from './Components/clean-loot-sheet-ver
     MatDialogModule,
     MatButtonModule,
     MatButtonToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [AuthGuard, AuthService, PermsGuard, {provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true}],
   bootstrap: [AppComponent]

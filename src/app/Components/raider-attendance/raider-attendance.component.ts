@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddDateDialogComponent } from 'app/Components/add-date-dialog/add-date-dialog.component';
 import { Attendance, CharNameAndRoster, AttUpdate, AddAttendance } from 'app/Models/attendance';
 import { AttendanceService } from 'app/Services/attendance.service';
 import { GetUniqueCharNamesService } from 'app/Services/get-unique-char-name-service.service';
 import { GetUniqueRaidDatesService } from 'app/Services/get-unique-raid-dates.service';
 import { NotesDialogComponent } from 'app/Components/notes-dialog/notes-dialog.component';
-import { UserAuthenticationService } from 'app/Services/user-authentication.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-raider-attendance',
@@ -37,10 +36,11 @@ export class RaiderAttendanceComponent implements OnInit {
   constructor(private attendanceService: AttendanceService,
               private uniqueAttendanceService: GetUniqueRaidDatesService,
               private uniqueCharNamesService: GetUniqueCharNamesService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private titleService: Title) { }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle("Sweat | Attendance");
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;
       this.attendanceLength = this.attendances.length;

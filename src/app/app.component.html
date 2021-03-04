@@ -1,14 +1,21 @@
-<nav>
-    <a routerLink="">Home</a>
-    <a *ngIf="!auth.loggedIn()" routerLink="login">Login</a>
-    <a *ngIf="auth.loggedIn()" (click)=auth.logoutUser()>Logoff</a>
-    <a *ngIf="auth.loggedIn()" routerLink="lootsheet">Loot Sheet</a>
-    <a *ngIf="auth.loggedIn()" routerLink="attendance">Attendance</a>
-    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminLootSheet">Admin Loot Sheet</a>
-    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminAttendance">Admin Attendance</a>
-    <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminPage">Admin Control</a>
-    <a *ngIf="auth.loggedIn()" routerLink="profile">Profile</a>
-    <h3> SWEAT </h3>
-</nav>
-<router-outlet></router-outlet>
+<div class="navBarHeader">
+    <nav>
+        <div class="customNavBar">
+    
+        </div>
+        <a routerLink="">Home</a>
+        <a *ngIf="!auth.loggedIn()" routerLink="login">Login</a>
+        <a *ngIf="auth.loggedIn()" (click)=auth.logoutUser() routerLink="login">Logoff</a>
+        <a *ngIf="auth.loggedIn()" routerLink="lootsheet">Loot Sheet</a>
+        <a *ngIf="auth.loggedIn()" routerLink="attendance">Attendance</a>
+        <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminLootSheet">Admin Loot Sheet</a>
+        <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminAttendance">Admin Attendance</a>
+        <a *ngIf="auth.loggedIn() && auth.isAdmin()" routerLink="adminPage">Admin Control</a>
+        <a *ngIf="auth.loggedIn()" routerLink="profile">Profile</a>
+        <h3> SWEAT </h3>
+    </nav>
+</div>
+<body>
+    <router-outlet></router-outlet>
+</body>
 <footer></footer>

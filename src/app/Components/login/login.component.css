@@ -1,0 +1,43 @@
+.container {
+    padding: 0px;
+    width: 800px;
+}
+
+.card {
+    border: 1px solid #202225;
+    background-color: #36393F;
+    color: white;
+    height: 350px;
+}
+
+.leftContent{
+    width: 50%;
+}
+
+.rightContent {
+    width: 50%;
+}
+
+.header {
+    text-align: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.fields {
+    justify-content: center;
+    display: grid;
+}
+
+input {
+    border-radius: 18px;
+    height: 50px;
+    margin-top: 10px;
+    width: 350px;
+    padding-left: 15px;
+}
+
+.submitButton:hover {
+    background-color: #202225;
+}

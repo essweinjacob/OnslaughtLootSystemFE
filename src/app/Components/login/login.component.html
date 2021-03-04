@@ -1,3 +1,13 @@
-<input type="text" placeholder="username" [(ngModel)]="username">
-<input type="password" placeholder="password" [(ngModel)]="password">
-<input type="submit" value="Submit" (click)="loginUser()">
+<div class="container">
+    <div class="card">
+        <div class="header">
+            SWEAT LOGIN
+        </div>
+        <div class="fields">
+            <input type="text" placeholder="Username" [(ngModel)]="username">
+            <input type="password" placeholder="Password" [(ngModel)]="password">
+            <input class="submitButton" type="submit" value="Submit" (click)="loginUser()">
+        </div>
+    </div>
+</div>
+

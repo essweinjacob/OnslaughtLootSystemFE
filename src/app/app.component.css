@@ -1,16 +1,16 @@
 nav {
-    height: 35px;
-    background-color: #333;
-    display: inline;
-    float: left;
+    height: 50px;
+    background-color: #2F3136;
+    display: inline-block;
     margin: 0;
     padding: 0;
     width: auto;
     min-width: 100%;
+    box-shadow: 0px 0px 4px black;
 }
 
 nav a {
-    padding: 14px 16px;
+    padding: 21px 16px;
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -23,5 +23,20 @@ nav h3 {
 }
 
 nav a:hover {
-    background-color: #111;
+    background-color: #202225;
+}
+
+.customNavBar{
+    margin-top: 11px;
+}
+
+body {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    background-color: #2F3136;
+    height: fit-content;
+}
+
+mat-card {
+    margin-top: 30px;
 }

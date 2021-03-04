@@ -6,6 +6,7 @@ import { UserAuthenticationService } from 'app/Services/user-authentication.serv
 import { AddNewUserDialogComponent } from '../add-new-user-dialog/add-new-user-dialog.component';
 import { CleanLootSheetVerifyComponent } from '../clean-loot-sheet-verify/clean-loot-sheet-verify.component';
 import { RemoveUserDialogComponent } from '../remove-user-dialog/remove-user-dialog.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-adminpage',
@@ -16,10 +17,12 @@ export class AdminPageComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private userAuth: UserAuthenticationService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private titleService: Title) { }
 
   ngOnInit(): void {
     this.userAuth.verifyUsers();
+    this.titleService.setTitle("Sweat | Admin");
   }
 
   newUser: Roster;

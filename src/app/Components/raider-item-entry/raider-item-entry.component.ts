@@ -3,6 +3,7 @@ import { ItemEntryService } from '../../Services/item-entry.service';
 import { ItemEntry, LootSheetUpdate, ItemEntryUpdate } from '../../Models/itemEntry';
 import { RosterAllEntriesService } from '../../Services/roster-all-entries.service';
 import { Roster } from '../../Models/roster';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-item-entry',
@@ -27,9 +28,11 @@ export class RaiderItemEntryComponent implements OnInit {
   totalRaidCount: number = 0;
 
   constructor(private itemEntryService: ItemEntryService,
-              private rosterAllEntriesService: RosterAllEntriesService) { }
+              private rosterAllEntriesService: RosterAllEntriesService,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Sweat | Loot Sheet");
     this.rosterAllEntriesService.getRosterEntries().subscribe((data: Roster[]) => {
       this.roster = data;
       this.rosterLength = this.roster.length;

@@ -1,6 +1,10 @@
 <div class ="container">
     <div class = "card">
-        <h3 class="text-center"> <input type="text" [(ngModel)]="itemName" placeholder="Search By Item" /> Item Entry List <input type="text" [(ngModel)]="charName" placeholder="Search By Name"/></h3>
+        <div class="lootListHeader">
+            <input type="text" [(ngModel)]="itemName" placeholder="Search By Item" />
+            <b>Loot Sheet</b>
+            <input type="text" [(ngModel)]="charName" placeholder="Search By Name"/>
+        </div>
         <div class = "card-body">
             <table class="table table-striped">
                 <thead>
