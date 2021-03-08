@@ -15,6 +15,11 @@ mat-card {
     padding: 0px
 }
 
+.mat-dialog-container {
+    color: white;
+    background-color: #36393F;
+}
+
 .card {
     border: 1px solid #202225;
     background-color: #36393F;
@@ -30,4 +35,15 @@ input {
 input:focus {
     outline-style: none;
     box-shadow: none;
+}
+
+select {
+    color: white;
+    background-color: #36393F;
+}
+
+.modalButton {
+    margin-top: 10px!important;
+    color: white;
+    background-color: #40444B;
 }

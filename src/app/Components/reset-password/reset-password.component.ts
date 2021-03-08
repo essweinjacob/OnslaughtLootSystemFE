@@ -32,7 +32,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   submit(){
-    if(this.charName != jwt_decode<tokenObject>(sessionStorage.getItem('token')).sub){
+    if(this.charName == jwt_decode<tokenObject>(sessionStorage.getItem('token')).sub){
       if(this.password != this.newPassword){
         if(this.newPassword == this.verifyNewPassword){
           let newPassword: ChangePassword = {username: this.charName, oldPassword: this.password, password: this.newPassword};
@@ -51,6 +51,7 @@ export class ResetPasswordComponent implements OnInit {
         window.alert("Your current password cannot be the same as your old password");
       }
     }else{
+      console.log(this.charName, )
       window.alert("You are looking pretty sus my dude");
       this.authService.logoutUser();
     }

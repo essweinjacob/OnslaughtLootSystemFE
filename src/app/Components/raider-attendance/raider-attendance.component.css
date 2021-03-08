@@ -8,6 +8,10 @@
 .dropdown-content a:hover {background-color: #ddd}
 .show {display: block;}
 
+.attendanceTable {
+    color: white;
+}
+
 .table {
     width: auto;
     max-width: none;
@@ -23,12 +27,8 @@ td, th {
     border-top-width: 0px;
 }
 
-.table-fixed {
-    background-color: white !important;
-}
-
 .table-fixed thead th {
-    background-color: white !important;
+    background-color: #36393F;
     position: sticky;
     top: 0;
     z-index: 2;
@@ -47,11 +47,14 @@ td, th {
 
 .charColumn {
     position: sticky;
-    background-color: white;
     width: 190px;
     height: 58px;
     left: 0;
     z-index: 1;
+}
+
+tbody {
+    background-color: #36393F;
 }
 
 h3 {
