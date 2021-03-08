@@ -49,7 +49,7 @@ export class AddNewUserDialogComponent implements OnInit {
   }
 
   submit(){
-    let newRosterUser = {charName: this.charName, charClass: this.charClass, role: this.role}
+    let newRosterUser = {charName: this.charName, charClass: this.charClass, notes: ""}
     
     // Add to roster
     this.rosterAllEntriesService.addNewUser(newRosterUser).subscribe(result =>{
@@ -58,7 +58,7 @@ export class AddNewUserDialogComponent implements OnInit {
         id = Number.parseInt(JSON.stringify(result));
         let newUserRaidDate: AddAttendance[] = [];
         for(var i = 0; i < this.uniqueRaidDatesAmount; i++){
-          newUserRaidDate.push({charId: id, raidDate: this.uniqueRaidDates[i].toString()})
+          newUserRaidDate.push({charName: this.charName, raidDate: this.uniqueRaidDates[i].toString()})
         }
         
         // Add to attendance

@@ -17,7 +17,7 @@ export interface ItemEntryUpdate {
 }
 
 export class LootSheetUpdate {
-    charId: number;
+    charName: string;
     itemName: string;
     prioValue: number;
     hasItem: boolean;

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Attendance, AddAttendance, AttUpdate } from '../Models/attendance';
+import { Attendance, AddAttendance, AttUpdate, NameWithAttendance } from '../Models/attendance';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,11 @@ export class AttendanceService {
 
   getAttendance(): Observable<Attendance[]>{
     return this.http.get<Attendance[]>(`${this.getAttendanceUrl}`);
+  }
+
+  getAttendanceCount(): Observable<NameWithAttendance[]>{
+    let url = "http://localhost:8080/api/getItemEntryAttendance"
+    return this.http.get<NameWithAttendance[]>(`${url}`);
   }
 
   updateAttendance(updateAttendance: AttUpdate): Observable<Attendance>{

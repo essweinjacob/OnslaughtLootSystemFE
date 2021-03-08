@@ -6,8 +6,13 @@ export class Attendance {
     didAttend: boolean;
 }
 
+export class NameWithAttendance {
+    charName: string;
+    raidsAttended: number;
+}
+
 export class AttUpdate {
-    charId: number;
+    charName: string;
     raidDate: string;
     didAttend: boolean;
 }
@@ -18,6 +23,6 @@ export class CharNameAndRoster {
 }
 
 export class AddAttendance {
-    charId: number;
+    charName: String;
     raidDate: string;
 }

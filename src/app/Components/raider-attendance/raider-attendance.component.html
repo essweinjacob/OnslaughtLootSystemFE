@@ -7,17 +7,17 @@ Search By Name: <input type="text" [(ngModel)]="charNameSearch"/>
             <table mdbTable class="table table-striped table-fixed">
                 <thead>
                     <th>Character Name</th>
-                    <th *ngFor="let raidDays of uniqueRaidDates" class="dateColumn">{{ raidDays }}</th>
+                    <th *ngFor="let raidDays of uniqueRaidDates" class="dateColumn">{{ raidDays.slice(0,-5) }}</th>
                 </thead> 
                 <tbody>
-                    <tr *ngFor="let char of charsAndClasses | searchByCharName: charNameSearch">
-                        <td class = "charColumn"><a (click)="openNoteDialog(char.charName);">{{ char.charName }}</a> </td>
+                    <tr *ngFor="let char of uniqueCharNames | searchByCharName: charNameSearch">
+                        <td class = "charColumn"><a (click)="openNoteDialog(char);">{{ char }}</a> </td>
                         <td class = "dateColumn" *ngFor="let raidDay of uniqueRaidDates">
-                            <span *ngIf="didPlayerAttend(raidDay, char.charName); else notChecked">
-                                <button disabled class="checkBox" [id]="char.charName + raidDay">&#10003;</button>
+                            <span *ngIf="didPlayerAttend(raidDay, char); else notChecked">
+                                <button disabled class="checkBox" [id]="char + raidDay">&#10003;</button>
                             </span>
                             <ng-template #notChecked>
-                                <button disabled class="checkBox" [id]="char.charName +  raidDay"></button>
+                                <button disabled class="checkBox" [id]="char +  raidDay"></button>
                             </ng-template>
                         </td>
                     </tr>

@@ -51,7 +51,6 @@ export class ResetPasswordComponent implements OnInit {
         window.alert("Your current password cannot be the same as your old password");
       }
     }else{
-      console.log(this.charName, )
       window.alert("You are looking pretty sus my dude");
       this.authService.logoutUser();
     }

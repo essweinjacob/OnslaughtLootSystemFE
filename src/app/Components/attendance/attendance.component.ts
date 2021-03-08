@@ -26,8 +26,6 @@ export class AttendanceComponent implements OnInit {
 
   uniqueCharNames: String[];
 
-  charsAndClasses: CharNameAndRoster[] = [];
-
   checkBoxText: string;
 
   raidDateToAdd: string;
@@ -49,29 +47,17 @@ export class AttendanceComponent implements OnInit {
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;
       this.attendanceLength = this.attendances.length;
+
+      this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
+        this.uniqueRaidDates = data;
+        this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
+      })
+
+      this.uniqueCharNamesService.getUniqueCharNames().subscribe((response: String[]) =>{
+        this.uniqueCharNames = response;
+        console.log(this.uniqueCharNames)
+      })
     });
-
-    this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
-      this.uniqueRaidDates = data;
-      this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
-    })
-
-    this.uniqueCharNamesService.getUniqueCharNames().subscribe((data: String[]) => {
-      this.uniqueCharNames = data;
-      
-      if(this.attendanceLength == undefined){
-        this.ngOnInit();
-      }
-      for(var i = 0; i < this.uniqueCharNames.length; i++){
-        for(var j = 0; j < this.attendanceLength; j++){
-          if(this.uniqueCharNames[i] == this.attendances[j].charName){
-            this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
-            break;
-          }
-        }
-      }
-    })
-    
   } 
 
   didPlayerAttend(raidDay: string, charName: string): boolean {
@@ -86,18 +72,18 @@ export class AttendanceComponent implements OnInit {
   }
 
   toggleTrueFalse(raidDay: string, charName: string): void {
-    let attUpdate: AttUpdate = {charId: 0, raidDate: "0/0", didAttend: true};
+    let attUpdate: AttUpdate = {charName: charName, raidDate: "0/0", didAttend: true};
     for(var i = 0; i < this.attendances.length; i++){
       if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName && this.attendances[i].didAttend == true){
         this.attendances[i].didAttend = false;
         document.getElementById(charName+raidDay).innerHTML = "";
-        attUpdate.charId = this.attendances[i].charId;
+        attUpdate.charName = this.attendances[i].charName;
         attUpdate.raidDate = raidDay;
         attUpdate.didAttend = false;
       } else if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName){
         this.attendances[i].didAttend = true;
         document.getElementById(charName+raidDay).innerHTML = "&#10003;";
-        attUpdate.charId = this.attendances[i].charId;
+        attUpdate.charName = this.attendances[i].charName;
         attUpdate.raidDate = raidDay;
         attUpdate.didAttend = true;
       }
@@ -120,12 +106,12 @@ export class AttendanceComponent implements OnInit {
       }
       // Create a attendance object list with character id
       let addNewAttendance: AddAttendance[] = [];
-      for(var i = 0; i <= this.uniqueCharNames.length; i++){
-        addNewAttendance.push({ charId: i, raidDate: splitDate })
+      for(var i = 0; i < this.uniqueCharNames.length; i++){
+        addNewAttendance.push({ charName: this.uniqueCharNames[i], raidDate: splitDate })
       }
+      location.reload()
       this.attendanceService.addAttendanceDate(addNewAttendance).subscribe( () =>{
       })
-      location.reload();
     })
   }
 

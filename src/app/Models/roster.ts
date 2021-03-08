@@ -9,7 +9,6 @@ export class Roster {
 export class AddNewUser{
     charName: string;
     charClass: string;
-    role: string;
 }
 
 export class UpdateNote {

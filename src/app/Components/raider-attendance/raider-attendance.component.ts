@@ -44,36 +44,27 @@ export class RaiderAttendanceComponent implements OnInit {
     this.attendanceService.getAttendance().subscribe((data: Attendance[]) => {
       this.attendances = data;
       this.attendanceLength = this.attendances.length;
+      console.log(this.attendanceLength);
+
+      this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
+        this.uniqueRaidDates = data;
+        this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
+      })
+
+      this.uniqueCharNamesService.getUniqueCharNames().subscribe((response: String[]) =>{
+        this.uniqueCharNames = response;
+        //console.log(this.uniqueCharNames)
+      })
     });
-
-    this.uniqueAttendanceService.getUniqueRaidDates().subscribe((data: String[]) => {
-      this.uniqueRaidDates = data;
-      this.uniqueRaidDatesAmount = this.uniqueRaidDates.length;
-    })
-
-    this.uniqueCharNamesService.getUniqueCharNames().subscribe((data: String[]) => {
-      this.uniqueCharNames = data;
-      
-      if(this.attendanceLength == undefined){
-        this.ngOnInit();
-      }
-      for(var i = 0; i < this.uniqueCharNames.length; i++){
-        for(var j = 0; j < this.attendanceLength; j++){
-          if(this.uniqueCharNames[i] == this.attendances[j].charName){
-            this.charsAndClasses.push({ charName: this.uniqueCharNames[i], charClass: this.attendances[j].charClass })
-            break;
-          }
-        }
-      }
-    })
-    
   } 
 
   didPlayerAttend(raidDay: string, charName: string): boolean {
     for(var i = 0; i < this.attendances.length; i++){
       if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName && this.attendances[i].didAttend == true){
+        console.log("here")
         return true;
       } else if(this.attendances[i].raidDate == raidDay && this.attendances[i].charName == charName){
+        console.log("here");
         return false;
       }
     }
